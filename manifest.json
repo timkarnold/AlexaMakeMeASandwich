@@ -9,7 +9,7 @@
    "content_scripts": [
      {
         "matches": ["http://echo.amazon.com/*"],
-        "js": ["jquery.js", "jimmyJohns.js", "artisan.js"],
+        "js": ["jquery.js", "q.js", "jimmyJohns.js", "artisan.js"],
         "css": ["artisan.css"]
      }
    ],
@@ -23,6 +23,7 @@
       },
       "default_title": "Artisan Alexa"
    },
+   "permissions": ["https://online.jimmyjohns.com/*"],
    "version": "0.0.1",
    "web_accessible_resources": [ "images/logo.png" ]
 }
