@@ -4,7 +4,8 @@ var triggerPhrases = [
 
 function determineIfWantSandwich(command) {
     if ($.inArray(command.toLowerCase(), triggerPhrases) >= 0) {
-        $('html').append('<div id="artisanAlexaStatus">Ordering...</div>');
+        $('html').append('<div id="artisanAlexaStatus">Starting order...</div>');
+        orderSandwich();
     } else {
         console.log('command did not request order', command);
     }

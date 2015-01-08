@@ -5,6 +5,7 @@ function orderSandwich() {
 		RememberMe: false
 	};
 
+	$('#artisanAlexaStatus').text('Logging in');
 	jjLogin(credentials).then(function(account){
 		// load location defaults from customer profile
 		var location = {};
@@ -17,6 +18,7 @@ function orderSandwich() {
 
 		console.log('prepped location', location);
 
+		$('#artisanAlexaStatus').text('Locating store');
 		findClosestStore(location).then(function(stores){
 			// autofill default location
 			var orderDetails = {
@@ -48,11 +50,13 @@ function orderSandwich() {
 
 			console.log('prepped contactInfo', contactInfo);
 
+			$('#artisanAlexaStatus').text('Creating order');
 			createOrder(orderDetails).then(function(){
 				setDeliveryAddress(location).then(function(){
 					addFavoriteToOrder(1).then(function(order){
 						setDeliverySchedule("2015-01-08+12:00+PM").then(function(){
 							var orderItems = order.Order.OrderItems;
+							$('#artisanAlexaStatus').text('Checking out');
 							setItemsForCheckout(orderItems).then(function(checkoutOrder){
 								setContactInfo(contactInfo).then(function(){
 									var paymentMethod = {
@@ -77,7 +81,10 @@ function orderSandwich() {
 									};
 
 									console.log('prepped paymentMethod', paymentMethod);
+									$('#artisanAlexaStatus').text('Submitting');
 									setPaymentMethod(paymentMethod).then(function(){
+										$('#artisanAlexaStatus').text('Done!');
+										$('#artisanAlexaStatus').addClass('done');
 										console.info('would submit order now!');
 										//submitOrder();
 									});
