@@ -1,0 +1,9 @@
+#artisanAlexaStatus {
+	position: fixed;
+	width: 300px;
+	height: 100px;
+	right: 10px;
+	top: 10px;
+	background-color: green;
+	z-index: 999999999
+}
