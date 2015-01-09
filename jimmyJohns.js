@@ -24,7 +24,6 @@ JimmyJohns.loadCredentials = function() {
 	chrome.runtime.sendMessage(chrome.runtime.id, {
 	    action: 'get_jj_settings',
 	}, function(ret) {
-		console.info(ret);
 		if (ret.email !== null && ret.pass !== null) {
 	    	deferred.resolve(ret);
 	    } else {

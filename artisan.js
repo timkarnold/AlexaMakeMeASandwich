@@ -7,25 +7,35 @@ function init() {
     JimmyJohns.init().then(function(){
         // success
         console.log("JimmyJohns.init() success");
+        injectPushListener(); // listen for voice command
+        chrome.runtime.sendMessage(chrome.runtime.id, {action: "show_page_action"}); // show icon in omnibox
+        updateOrderStatus("init", "Alexa is ready to make sandwiches");
     }, function(){
         // login not set
         console.error("JimmyJohns.init() failed");
-        JimmyJohns.saveCredentials({
-            email: "",
-            pass: ""
-        }).then(function(){
-            console.info("New credentials saved, re-initializing");
-            init();
-        });
+        showLoginWindow();
     });
-
-    injectPushListener(); // listen for voice command
-    chrome.extension.sendRequest("show_page_action"); // show icon in omnibox
-    updateOrderStatus("init", "Alexa is ready to make sandwiches");
 }
 
 function order() {
     JimmyJohns.orderSandwich();
+}
+
+function showLoginWindow(){
+    $('html').append('<div id="artisanAlexaLogin"></div>');
+    $.get(chrome.extension.getURL('/login.html'), function(data) {
+        $('#artisanAlexaLogin').html(data);
+        $('#artisanAlexaLogin button').one('click', function(e) {
+            JimmyJohns.saveCredentials({
+            email: $('#artisanAlexaLogin input[name="email"]').val(),
+            pass: $('#artisanAlexaLogin input[name="pass"]').val()
+            }).then(function(){
+                console.info("New credentials saved, re-initializing");
+                $('#artisanAlexaLogin').remove();
+                init();
+            });
+        });
+    });
 }
 
 function updateOrderStatus(state, text){

@@ -25,5 +25,5 @@
    },
    "permissions": ["https://online.jimmyjohns.com/*"],
    "version": "0.0.1",
-   "web_accessible_resources": [ "images/logo.png" ]
+   "web_accessible_resources": [ "login.html", "images/logo.png" ]
 }
