@@ -9,7 +9,7 @@
    "content_scripts": [
      {
         "matches": ["http://echo.amazon.com/*"],
-        "js": ["jquery.js", "q.js", "jimmyJohns.js", "artisan.js"],
+        "js": ["jquery.js", "q.js", "jimmyJohns.js", "listener.js", "artisan.js"],
         "css": ["artisan.css"]
      }
    ],
