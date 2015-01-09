@@ -1,5 +1,5 @@
 {
-   "name": "Artisan Alexa",
+   "name": "Alexa, make me a sandwich",
    "description": "Echo, with cheese.",
    "icons": {
       "128": "images/logo-128.png",
@@ -21,7 +21,7 @@
         "19": "images/logo-19.png",
         "38": "images/logo-38.png"
       },
-      "default_title": "Artisan Alexa"
+      "default_title": "Alexa, make me a sandwich"
    },
    "permissions": ["https://online.jimmyjohns.com/*"],
    "version": "0.0.1",
