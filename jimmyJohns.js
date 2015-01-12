@@ -67,6 +67,55 @@ JimmyJohns.login = function(credentials) {
 	return deferred.promise;
 };
 
+JimmyJohns.testLogin = function(credentials, testResultPostback) {
+	var deferred = Q.defer();
+	JimmyJohns.login(credentials).then(function(customerDetails){
+		testResultPostback({test: "login", result: "success"});
+		JimmyJohns.customerDetails = customerDetails;
+
+		var deliveryLocation = customerDefultDeliveryLocation(JimmyJohns.customerDetails);
+		if(deliveryLocation){
+			testResultPostback({test: "deliveryLocation", result: "success", details: deliveryLocation});
+		} else {
+			testResultPostback({test: "deliveryLocation", result: "fail"});
+			deferred.reject({errorText: 'Your account needs a default delivery location', url:'https://online.jimmyjohns.com/#/deliveryaddress/?t=d&v=0&q='});
+		}
+
+		var contactInfo;
+		if (deliveryLocation){
+			contactInfo = customerContactInfo(JimmyJohns.customerDetails);
+			if(contactInfo){
+				testResultPostback({test: "contactInfo", result: "success", details: contactInfo});
+			} else {
+				testResultPostback({test: "contactInfo", result: "fail"});
+				deferred.reject('Your account is missing contact info');
+			}
+		}
+
+		if(contactInfo && deliveryLocation) {
+			JimmyJohns.findClosestStore(deliveryLocation).then(function(store){
+				testResultPostback({test: "closestStore", result: "success", details: store});
+				JimmyJohns.createOrder(store, deliveryLocation, contactInfo, null).then(function(orderItems){
+					testResultPostback({test: "favoriteItems", result: "success", details: orderItems});
+					deferred.resolve();
+				}, function(err){
+					console.warn('JimmyJohns.testLogin', err);
+					testResultPostback({test: "favoriteItems", result: "fail"});
+					deferred.reject('Looks like you don\'t have a favorite sub set up');
+				});
+			}, function(err){
+				console.warn('JimmyJohns.testLogin', err);
+				testResultPostback({test: "closestStore", result: "fail"});
+				deferred.reject('Couldn\'t find a store near you');
+			});
+		}
+	}, function(err){
+		console.warn('JimmyJohns.testLogin', err);
+		testResultPostback({test: "login", result: "fail"});
+		deferred.reject('Your login didn\'t work');
+	});
+	return deferred.promise;
+};
 
 JimmyJohns.orderSandwich = function() {
 	updateOrderStatus('loading', 'Finding closest store');
@@ -344,8 +393,12 @@ function submitOrder() {
 function customerDefultDeliveryLocation(account) {
 	// load location defaults from customer profile
 	var location = {};
-	var defaultAddressId = account.Customer.CustomerAddresses.DefaultAddress;
-	$.each(account.Customer.CustomerAddresses.Addresses, function(i, address){
+	var customerAddresses = account.Customer.CustomerAddresses;
+	var defaultAddressId = customerAddresses.DefaultAddress;
+	if (customerAddresses.Addresses.length === 0 || !defaultAddressId){
+		return false;
+	}
+	$.each(customerAddresses.Addresses, function(i, address){
 		if(address.Index == defaultAddressId) {
 			location = address;
 		}

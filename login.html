@@ -1,5 +1,18 @@
-<h2>Alexa, make me a sandwich</h2>
-<h3>Login to Jimmy John's</h3>
-<label for="email">Email:</label> <input type="text" name="email" /><br />
-<label for="password">Password:</label> <input type="password" name="pass" /><br />
-<button type="submit">Submit</button>
+<div id="artisanLaunchLogo"></div>
+<p>Alexa will place orders through Jimmy John's, so gonna need your login.</p>
+<div id="artisanJJLogin">
+	<label for="email">Email:</label> <input type="text" name="email" /><br />
+	<label for="password">Password:</label> <input type="password" name="pass" /><br />
+	<button type="submit">Login</button>
+</div>
+<div id="artisanJJLoginTests">
+	<p><strong>Verifying your account is good to go</strong></p>
+	<div class="artisanTest" id="artisanTest-login">Login credentials</div>
+	<div class="artisanTest" id="artisanTest-deliveryLocation">Default Delivery Location</div>
+	<div class="artisanTest" id="artisanTest-contactInfo">Your Contact Info</div>
+	<div class="artisanTest" id="artisanTest-closestStore">Local Store Location</div>
+	<div class="artisanTest" id="artisanTest-favoriteItems">Favorite Order Items</div>
+</div>
+<p class="artisanNote" id="artisanLoginTestResult"></p>
+<p class="artisanNote" id="artisanRegisterNote"><em><a href="https://online.jimmyjohns.com/#/register" target="_blank">Don't have a Jimmy John's account?</a></em></p>
+<input type="button" value="Sweet!" id="artisanLaunchTutorial" />

@@ -6,7 +6,7 @@ Tired of having to press buttons to get a sandwich? Now you can transform Alexa 
 
 The MIT License (MIT)
 
-Copyright (c) [2014] [Tim Arnold]
+Copyright (c) 2014 Tim Arnold
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

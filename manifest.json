@@ -1,6 +1,6 @@
 {
    "name": "Alexa, make me a sandwich",
-   "description": "Echo, with cheese.",
+   "description": "Amazon Echo, with cheese.",
    "icons": {
       "128": "images/logo-128.png",
       "48": "images/logo-48.png"
@@ -25,5 +25,5 @@
    },
    "permissions": ["https://online.jimmyjohns.com/*"],
    "version": "0.0.1",
-   "web_accessible_resources": [ "login.html", "images/logo.png" ]
+   "web_accessible_resources": [ "login.html", "welcome.html", "tutorial.html", "images/logo.png" ]
 }

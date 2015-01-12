@@ -1,29 +1,56 @@
-#artisanAlexaStatus {
+#artisanLaunchLogo {
+	width: 150px;
+	height: 150px;
+	margin: 0 auto;
+	margin-bottom: 10px;
+	background-image:url('chrome-extension://__MSG_@@extension_id__/images/logo.png');
+	background-size: auto 100%;
+	background-repeat: no-repeat;
+}
+#artisanAlexaStatusWrap{
 	position: fixed;
 	width: 300px;
 	min-height: 50px;
 	right: 10px;
 	top: 10px;
-	background-color: #7da799;
+	background-color: white;
 	z-index: 999999999
 	border: 2px solid;
     border-radius: 25px;
     box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.75);
     text-align: center;
-    font-size: 25px;
-    line-height: 50px;
     font-weight: bold;
+    padding: 20px;
+}
+#artisanAlexaStatus {
+	position: relative;
+	right: 0;
+	width: 250px;
+	display: inline-block;
+	font-size: 20px;
+}
+
+#artisanStatusLogo {
+	display: inline-block;
+	width: 50px;
+	height: 50px;
+	margin: 0;
+	background-image:url('chrome-extension://__MSG_@@extension_id__/images/logo.png');
+	background-size: auto 100%;
+	background-repeat: no-repeat;
+	position: relative;
+	left: 0;
 }
 
 #artisanAlexaStatus.done {
 	background-color: #acb550;
 }
 
-#artisanAlexaLogin {
+.artisanDialog {
 	position: fixed;
 	top:50%;
 	left: 50%;
-	min-width: 400px;
+	min-width: 550px;
 	min-height: 225px;
 	transform: translate(-50%, -50%);
 	background-color: white;
@@ -32,5 +59,143 @@
 	border: 2px solid;
     border-radius: 25px;
     box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.75);
-    margin: 20px;
+    padding: 20px;
+}
+
+#artisanWelcome ol {
+	padding-top: 10px;
+	width: 275px;
+	text-align: left;
+	margin: 0 auto;
+	font-size: 14px;
+}
+#artisanWelcome input {
+	margin-top: 10px;
+}
+
+#artisanWelcome li {
+	padding-bottom: 10px;
+}
+
+#artisanJJLogin {
+	width: 220px;
+	margin: 0 auto;
+	padding-top: 20px;
+}
+#artisanAlexaLogin label {
+	text-align: left;
+	padding-top: 5px;
+}
+#artisanAlexaLogin input {
+	margin-top: 5px;
+	margin-bottom: 10px;
+}
+.artisanNote {
+	font-size: 12px;
+	padding-top: 10px;
+}
+
+#overlay {
+   z-index: 99999995;
+   position: absolute;
+   display: static;
+   left:0;
+   right:0;
+   top:0;
+   bottom:0;
+   background-color: black;
+   opacity: .2;
+}
+#artisanJJLoginTests {
+	display: none;
+}
+#artisanLoginTestResult {
+	display: none;
+	font-weight: bold;
+}
+.artisanTest{
+	font-size: 12px;
+}
+.artisanTest.success {
+	color: green;
+}
+.artisanTest.success:after {
+	content:'\2713';
+	display:inline-block;
+	color:green;
+	padding:0 6px 0 0;
+	margin-left: 2px;
+ }
+.artisanTest.fail {
+	color: red;
+}
+.artisanTest.fail:after {
+	content:'\2718';
+	display:inline-block;
+	color:red;
+	padding:0 6px 0 0;
+	margin-left: 2px;
+ }
+ #artisanLaunchTutorial {
+ 	display: none;
+ }
+ #artisanTriggerWrap {
+ 	font-weight: bold;
+ 	font-size: 18px;
+ 	margin-top: 20px;
+ 	margin-bottom: 15px;
+ }
+ #artisanTriggerWrap span {
+ 	font-style: italic;
+ }
+ #artisanEnableOrdering {
+ 	display: none;
+ }
+
+ @-webkit-keyframes rotate {
+  from {
+    -webkit-transform: rotate(360deg);
+  }
+  to {
+    -webkit-transform: rotate(0deg);
+  }
+}
+
+.artisanOrderingDemo {
+    -webkit-animation-name:             rotate; 
+    -webkit-animation-duration:         0.5s; 
+    -webkit-animation-iteration-count:  infinite;
+    -webkit-animation-timing-function:	linear;
+}
+
+ @-webkit-keyframes shake {
+  0% {
+    -webkit-transform: translateX(0);
+  }
+
+  20% {
+    -webkit-transform: translateX(-10px);
+  }
+
+  40% {
+    -webkit-transform: translateX(10px);
+  }
+
+  60% {
+    -webkit-transform: translateX(-10px);
+  }
+
+  80% {
+    -webkit-transform: translateX(10px);
+  }
+
+  100% {
+    -webkit-transform: translateX(0);
+  }
+}
+.shake {
+	-webkit-animation-name: 	shake;
+	-webkit-animation-duration: 0.5s;
+	-webkit-animation-timing-function:	ease-in-out;
+	-webkit-animation-iteration-count:  infinite;
 }

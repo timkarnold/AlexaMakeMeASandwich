@@ -1,9 +1,15 @@
 function determineIfWantSandwich(command) {
-    if ($.inArray(command.toLowerCase(), triggerPhrases) >= 0) {
-        console.log('determineIfWantSandwich desire triggered!', command);
-        order();
-    } else {
-        console.info('command did not request order', command);
+    command = command.toLowerCase().replace('alexa', '').trim();
+    if (command.length > 0) {
+        if ($.inArray(command, triggerPhrases) >= 0) {
+            console.log('determineIfWantSandwich desire triggered!', command);
+            order();
+        } else {
+            console.info('command did not request order', command);
+            if (isTutorialMode) {
+                tutorialOrderPhraseFailed(command);
+            }
+        }
     }
 }
 
@@ -27,12 +33,16 @@ window.addEventListener("message", function(event) {
 }, false);
 
 // get around the sandbox so we can hook in
+var pushListenerInjected = false;
 function injectPushListener() {
-    var seD = document.createElement('script');
-    seD.type = 'text/javascript';
-    seD.text = 'function onPushActivity (c) { var b = c.key.registeredUserId + "#" + c.key.entryId; var url = "https://pitangui.amazon.com/api/activities/"+ encodeURIComponent(b); $.get(url, function(ret){ window.postMessage({ type: "alexaActivity", ret: ret }, "*"); });}';
-    seD.text += 'var e = require("collections/cardstream/card-collection").getInstance();\r';
-    seD.text += 'e.listenTo(e, "pushMessage", function(c){ onPushActivity(c); });';
-    var sD = document.getElementsByTagName('script')[0];
-    sD.parentNode.insertBefore(seD, sD);
+    if (!pushListenerInjected) {
+        var seD = document.createElement('script');
+        seD.type = 'text/javascript';
+        seD.text = 'function onPushActivity (c) { var b = c.key.registeredUserId + "#" + c.key.entryId; var url = "https://pitangui.amazon.com/api/activities/"+ encodeURIComponent(b); $.get(url, function(ret){ window.postMessage({ type: "alexaActivity", ret: ret }, "*"); });}';
+        seD.text += 'var e = require("collections/cardstream/card-collection").getInstance();\r';
+        seD.text += 'e.listenTo(e, "pushMessage", function(c){ onPushActivity(c); });';
+        var sD = document.getElementsByTagName('script')[0];
+        sD.parentNode.insertBefore(seD, sD);
+        pushListenerInjected = true;
+    }
 }
