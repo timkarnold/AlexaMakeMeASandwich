@@ -2,6 +2,8 @@
 
 Tired of having to press buttons to get a sandwich? Now you can transform Alexa into an artisan and order food by just yelling at your Amazon Echo.
 
+Install at Chrome Store: https://chrome.google.com/webstore/detail/alexa-make-me-a-sandwich/mckidcpfcebpepoedcbaklahnoecbffn
+
 --
 
 The MIT License (MIT)
