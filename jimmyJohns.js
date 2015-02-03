@@ -199,8 +199,8 @@ JimmyJohns.submitOrder = function(orderItems, contactInfo) {
 			};
 
 			setPaymentMethod(paymentMethod).then(function(){
-				console.info('would submit order now!');
-				//submitOrder();
+				//console.info('would submit order now!');
+				submitOrder();
 				deferred.resolve();
 			}, function(err) {
 				console.error("setPaymentMethod", err);
