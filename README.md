@@ -2,7 +2,12 @@
 
 Tired of having to press buttons to get a sandwich? Now you can transform Alexa into an artisan and order food by just yelling at your Amazon Echo.
 
+This is a Chrome Extension that hooks into the Echo's web interface, enabling the command "Alexa, make me a sandwich" to order your usual from Jimmy John's.
+
 Install at Chrome Store: https://chrome.google.com/webstore/detail/alexa-make-me-a-sandwich/mckidcpfcebpepoedcbaklahnoecbffn
+
+## Jimmy John's Limitations
+When you go through the setup process, the extension will test your Jimmy John's account to ensure it is setup with all the info needed to place an order. Due to the way defaults are configured with JJ, you'll probably need to have already placed an order with them before to have your default address setup. Also the order that will be placed is your Favorite #1, so make sure that's what you want. Finally, this implementation is cash only, so be ready to pay up plus tip if you actually go through with ordering.
 
 --
 
