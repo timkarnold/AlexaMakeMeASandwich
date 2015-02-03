@@ -1,6 +1,6 @@
 // CONFIG
 var triggerPhrases = [
-    "pseudo make me a sandwich",
+    "make me a sandwich",
 ];
 
 var isTutorialMode = false;
